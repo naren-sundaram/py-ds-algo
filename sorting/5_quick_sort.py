@@ -1,6 +1,8 @@
 from algorithms.sort import quick_sort as quick_sort_base
+from utils.timeit import timeit
 
 
+@timeit
 def quick_sort(arr):
     length = len(arr)
     left, right = 0, length - 1
@@ -28,11 +30,11 @@ def do_partition(arr, right):
 
 
 print("\nMy code: ")
-arr = [7, 0, 9, 4, 2, 5, 1, 6, 3, 8]
+arr = [7, 0, 9, 4, 2, 5, 1, 6, 3, 8] * 100
 print("Input array: ", arr)
 print("Sorted array: ", quick_sort(arr))
 
 print("\nBase code: ")
-arr = [7, 0, 9, 4, 2, 5, 1, 6, 3, 8]
+arr = [7, 0, 9, 4, 2, 5, 1, 6, 3, 8] * 100
 print("Input array: ", arr)
-print("Sorted array: ", quick_sort_base(arr))
+print("Sorted array: ", timeit(quick_sort_base)(arr))

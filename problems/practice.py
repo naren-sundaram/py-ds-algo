@@ -1,26 +1,21 @@
-import os
-
-
-# Complete the birthday function below.
-def birthday(s, d, m):
-    possibility = 0
-    length = len(s)
-    limit = length - (m-1)
-    for i in range(0, limit+1):
-        day = s[i]
-        for j in range(1, m-1):
-            print(i, j, i+j)
-            day += s[i+j]
-        if day == d:
-            possibility += 1
-    return possibility
+def picking_numbers(a):
+    diffs = []
+    for idx, ele in enumerate(a):
+        pos_neg_diff = [0, 0]
+        for i_idx, i_ele in enumerate(a):
+            if idx != i_idx:
+                if abs(ele - i_ele) <= 1:
+                    if ele >= i_ele:
+                        pos_neg_diff[0] += 1
+                    else:
+                        pos_neg_diff[1] += 1
+        diffs.append(max(pos_neg_diff))
+        break
+    return max(diffs) + 1 if diffs else 0
 
 
 if __name__ == '__main__':
     n = int(input().strip())
-    s = list(map(int, input().rstrip().split()))
-    dm = input().rstrip().split()
-    d = int(dm[0])
-    m = int(dm[1])
-    result = birthday(s, d, m)
+    a = list(map(int, input().rstrip().split()))
+    result = picking_numbers(a)
     print(result)
